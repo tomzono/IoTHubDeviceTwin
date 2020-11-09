@@ -55,6 +55,10 @@ def iothub_SendMessage(str):
     try:
         client.send_message(message)
         print("Send data to IoTHub")
+        # get the twin
+        twin = client.get_twin()
+        print("Twin document:")
+        print("{}".format(twin))
         result = True
     except Exception as e:
         print("Failed to send data to IoTHub")
@@ -303,13 +307,6 @@ if __name__ == "__main__":
             if flag_update_sensor_status:
                 print_sensor_state()
                 flag_update_sensor_status = False
-
-            # get the twin
-            twin = client.get_twin()
-            print("Twin document:")
-            print("{}".format(twin))
-
-
 
     except KeyboardInterrupt:
         print ("IoTHubClient stopped")
