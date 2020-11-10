@@ -25,6 +25,7 @@ device_id = socket.gethostname()
 sensor_list = []
 flag_update_sensor_status = False
 handling_data_count = 30
+VANTIQ_FORWARD_HANDLING_DATA_COUNT = 30
 sensordata = {}
 RECEIVED_MESSAGES = 0
 
@@ -141,7 +142,7 @@ def parse_events(sock, loop_count=10):
 # data handling
 def handling_data(sensor):
     global handling_data_count
-    if handling_data_count >= conf.VANTIQ_FORWARD_HANDLING_DATA_COUNT:
+    if handling_data_count >= VANTIQ_FORWARD_HANDLING_DATA_COUNT:
         sensordata = sensor.forward_vantiq()
         messageResult = iothub_SendMessage(str(sensordata))
         handling_data_count = 0
