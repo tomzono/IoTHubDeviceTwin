@@ -57,7 +57,8 @@ def iothub_SendMessage(str):
     # get the twin
     twin = client.get_twin()
     jsondata = json.dumps(twin)
-    VANTIQ_FORWARD_HANDLING_DATA_COUNT = json.loads(jsondata.desired.intervaal)
+    response = json.loads(jsondata)
+    #VANTIQ_FORWARD_HANDLING_DATA_COUNT = response.desired.intervaal
     print("Twin document:")
     print(jsondata)
     reported_properties = {"temperature": random.randint(320, 800) / 10,"device":device_id}
