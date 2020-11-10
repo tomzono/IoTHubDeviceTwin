@@ -60,7 +60,7 @@ def iothub_SendMessage(str):
         print("Twin document:")
         print("{}".format(twin))
         reported_properties = {"temperature": random.randint(320, 800) / 10,"device":device_id}
-        print("Setting reported temperature to {}".format(reported_properties["temperature"]))
+        print("Setting reported temperature to {}".format(reported_properties))
         client.patch_twin_reported_properties(reported_properties)
 
         result = True
