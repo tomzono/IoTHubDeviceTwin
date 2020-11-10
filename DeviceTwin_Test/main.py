@@ -63,6 +63,8 @@ def iothub_SendMessage(str):
         reported_properties = {"temperature": random.randint(320, 800) / 10,"device":device_id}
         print("Setting reported temperature to {}".format(reported_properties))
         client.patch_twin_reported_properties(reported_properties)
+        print("VANTIQ_FORWARD_HANDLING_DATA_COUNT")
+        print(VANTIQ_FORWARD_HANDLING_DATA_COUNT)
 
         result = True
     except Exception as e:
