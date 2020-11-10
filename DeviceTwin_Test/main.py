@@ -58,7 +58,7 @@ def iothub_SendMessage(str):
     twin = client.get_twin()
     jsondata = json.dumps(twin)
     response = json.loads(jsondata)
-    #VANTIQ_FORWARD_HANDLING_DATA_COUNT = response.desired.intervaal
+    VANTIQ_FORWARD_HANDLING_DATA_COUNT = response.desired.intervaal
     print("Twin document:")
     print(jsondata)
     print(response)
