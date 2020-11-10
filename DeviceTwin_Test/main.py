@@ -58,7 +58,7 @@ def iothub_SendMessage(str):
     twin = client.get_twin()
     respose_interval = twin['desired']['intervaal']
     print("Twin document:")
-    print(response)
+    print(response_interval)
     VANTIQ_FORWARD_HANDLING_DATA_COUNT = response_interval
     reported_properties = {"temperature": random.randint(320, 800) / 10,"device":device_id}
     print("Setting reported temperature to {}".format(reported_properties))
