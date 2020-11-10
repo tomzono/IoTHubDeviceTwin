@@ -53,20 +53,23 @@ def iothub_client_init():
 def iothub_SendMessage(str):
     result = False
     message = str
+    dict_message = json.loads(message)
+    print (dict_message)
     global VANTIQ_FORWARD_HANDLING_DATA_COUNT
-    # get the twin
-    twin = client.get_twin()
-    response_interval = twin['desired']['intervaal']
-    print("Twin document:")
-    print(response_interval)
-    VANTIQ_FORWARD_HANDLING_DATA_COUNT = response_interval
-    reported_properties = {"temperature": random.randint(320, 800) / 10,"device":device_id}
-    print("Setting reported temperature to {}".format(reported_properties))
-    client.patch_twin_reported_properties(reported_properties)
-    print("VANTIQ_FORWARD_HANDLING_DATA_COUNT")
-    print(VANTIQ_FORWARD_HANDLING_DATA_COUNT)
 
     try:
+        # get the twin
+        twin = client.get_twin()
+        response_interval = twin['desired']['intervaal']
+        print("deviceTwinSettingHANDLING_DATA_COUNT:",response_interval)
+        #setting handling_data_count
+        VANTIQ_FORWARD_HANDLING_DATA_COUNT = response_interval
+        print("VANTIQ_FORWARD_HANDLING_DATA_COUNT",VANTIQ_FORWARD_HANDLING_DATA_COUNT)
+        #test_send DeviceTwin_reported
+        reported_properties = {"temperature": random.randint(320, 800) / 10,"device":device_id}
+        print("Setting reported temperature to {}".format(reported_properties))
+        client.patch_twin_reported_properties(reported_properties)
+        #send Message to IoTHub
         client.send_message(message)
         print("Send data to IoTHub")
         result = True
