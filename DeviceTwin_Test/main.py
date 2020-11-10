@@ -56,7 +56,7 @@ def iothub_SendMessage(str):
     global VANTIQ_FORWARD_HANDLING_DATA_COUNT
     # get the twin
     twin = client.get_twin()
-    respose_interval = twin['desired']['intervaal']
+    response_interval = twin['desired']['intervaal']
     print("Twin document:")
     print(response_interval)
     VANTIQ_FORWARD_HANDLING_DATA_COUNT = response_interval
