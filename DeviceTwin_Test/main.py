@@ -59,7 +59,7 @@ def iothub_SendMessage(str):
     print ("VANTIQ_FORWARD_HANDLING_DATA_COUNT : {}".format(VANTIQ_FORWARD_HANDLING_DATA_COUNT))
     #test_send DeviceTwin_reported
     #reported_properties = {"temperature": random.randint(320, 800) / 10,"device":device_id}
-    reported_properties = message
+    reported_properties = dict_message
     client.patch_twin_reported_properties(reported_properties)
     #send Message to IoTHub
     client.send_message(message)
