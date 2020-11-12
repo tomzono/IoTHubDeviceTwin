@@ -31,12 +31,12 @@ RECEIVED_MESSAGES = 0
 def iothub_client_init():
     derived_device_key = devicekey.derive_device_key(device_id)
     registration_result =registerdevice.register_device(device_id,derived_device_key)
-    print("The status was : ", registration_result.status)
-    print("The etag is : ",registration_result.registration_state.etag)
-    print("The assigned IoT_hub : ",registration_result.registration_state.assigned_hub)
+    print ("The status was : ", registration_result.status)
+    print ("The etag is : ",registration_result.registration_state.etag)
+    print ("The assigned IoT_hub : ",registration_result.registration_state.assigned_hub)
 
     if registration_result.status == "assigned":
-        print("Will send telemetry from the provisioned device with id {id}".format(id=device_id))
+        print ("Will send telemetry from the provisioned device with id {id}".format(id=device_id))
         device_client = IoTHubDeviceClient.create_from_symmetric_key(
             symmetric_key=derived_device_key,
             hostname=registration_result.registration_state.assigned_hub,
@@ -57,17 +57,17 @@ def iothub_SendMessage(str):
         twin = client.get_twin()
         #setting handling_data_count
         VANTIQ_FORWARD_HANDLING_DATA_COUNT = twin['desired']['intervaal']
-        print("VANTIQ_FORWARD_HANDLING_DATA_COUNT",VANTIQ_FORWARD_HANDLING_DATA_COUNT)
+        print ("VANTIQ_FORWARD_HANDLING_DATA_COUNT",VANTIQ_FORWARD_HANDLING_DATA_COUNT)
         #test_send DeviceTwin_reported
         reported_properties = {"temperature": random.randint(320, 800) / 10,"device":device_id}
-        print("Setting reported temperature to {}".format(reported_properties))
+        print ("Setting reported temperature to {}".format(reported_properties))
         client.patch_twin_reported_properties(reported_properties)
         #send Message to IoTHub
         client.send_message(message)
-        print("Send data to IoTHub")
+        print ("Send data to IoTHub")
         result = True
     except Exception as e:
-        print("Failed to send data to IoTHub")
+        print ("Failed to send data to IoTHub")
 
     return result
 
@@ -81,7 +81,7 @@ def message_listener(client):
         #print data and both system and application (custom) properties
         for property in vars(message).items():
             print ("    {0}".format(property))
-        print( "Total calls received: {}".format(RECEIVED_MESSAGES))
+        print ( "Total calls received: {}".format(RECEIVED_MESSAGES))
 
 
 def parse_events(sock, loop_count=10):
