@@ -2,7 +2,6 @@ import os
 from azure.iot.device import ProvisioningDeviceClient
 from azure.iot.device import IoTHubDeviceClient
 from azure.iot.device import Message
-
 import DPSconfig
 provisioning_host = DPSconfig.provisioning_group_host
 id_scope = DPSconfig.group_id_scope

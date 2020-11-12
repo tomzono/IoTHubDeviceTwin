@@ -12,4 +12,3 @@ VANTIQ_HEADERS = {
     'Authorization': 'Bearer ' + VANTIQ_TOKEN,
     'content-type': 'application/json'
 }
-VANTIQ_FORWARD_HANDLING_DATA_COUNT = 30
