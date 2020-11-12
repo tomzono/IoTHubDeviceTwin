@@ -5,13 +5,13 @@ import socket
 import datetime
 import threading
 import struct
-import sensor_beacon as envsensor
 import conf
 import ble
 import json
 import random
 import time
 from azure.iot.device import IoTHubDeviceClient, Message
+import sensor_beacon as envsensor
 import DPS_derive_device_key as devicekey
 import DPS_register_device as registerdevice
 
@@ -44,7 +44,7 @@ def iothub_client_init():
         )
     return device_client
 
-#Send message to IoTHub　and update DeviceTwin
+#Send message to IoTHub and update DeviceTwin
 def iothub_SendMessage(str):
     result = False
     message = str
