@@ -47,11 +47,11 @@ def iothub_client_init():
 #Send message to IoTHub and update DeviceTwin
 def iothub_SendMessage(str):
     result = False
-    message = str
+    message = json.dumps(str)
     dict_message = json.loads(message)
     print (dict_message)
     global VANTIQ_FORWARD_HANDLING_DATA_COUNT
-    ## DEBUG: 
+    ## DEBUG:
     # get the twin
     twin = client.get_twin()
     #setting handling_data_count
