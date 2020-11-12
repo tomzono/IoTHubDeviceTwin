@@ -54,13 +54,20 @@ def iothub_SendMessage(str):
     ## DEBUG:
     # get the twin
     twin = client.get_twin()
-    #setting handling_data_count "" : dict_message['']
+    #setting handling_data_count
     VANTIQ_FORWARD_HANDLING_DATA_COUNT = twin['desired']['intervaal']
     print ("VANTIQ_FORWARD_HANDLING_DATA_COUNT : {}".format(VANTIQ_FORWARD_HANDLING_DATA_COUNT))
     #test_send DeviceTwin_reported
     #reported_properties = {"temperature": random.randint(320, 800) / 10,"device":device_id}
     reported_properties = {
-        "temperature" : dict_message['temperature']
+        "temperature" : dict_message['temperature'],
+        "noise" : dict_message['noise'],
+        "eco2" : dict_message['eco2'],
+        "heat" : dict_message['heat'],
+        "sensor_type" : dict_message['sensor_type'],
+        "time" : dict_message['time'],
+        "bt_address" : dict_message['bt_address'],
+        "gateway" : dict_message['gateway']
     }
     client.patch_twin_reported_properties(reported_properties)
     #send Message to IoTHub
