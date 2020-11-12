@@ -49,7 +49,6 @@ def iothub_SendMessage(str):
     result = False
     message = str
     dict_message = json.loads(message)
-    jsondata = json.dumps(dict_message)
     print (dict_message)
     global VANTIQ_FORWARD_HANDLING_DATA_COUNT
     ## DEBUG:
@@ -59,8 +58,7 @@ def iothub_SendMessage(str):
     VANTIQ_FORWARD_HANDLING_DATA_COUNT = twin['desired']['intervaal']
     print ("VANTIQ_FORWARD_HANDLING_DATA_COUNT : {}".format(VANTIQ_FORWARD_HANDLING_DATA_COUNT))
     #test_send DeviceTwin_reported
-    #reported_properties = {"temperature": random.randint(320, 800) / 10,"device":device_id}
-    reported_properties = jsondata
+    reported_properties = {"temperature": random.randint(320, 800) / 10,"device":device_id}
     client.patch_twin_reported_properties(reported_properties)
     #send Message to IoTHub
     client.send_message(message)
