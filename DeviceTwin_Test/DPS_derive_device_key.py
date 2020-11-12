@@ -4,7 +4,7 @@ import hmac
 import hashlib
 import DPSconfig
 group_symmetric_key = DPSconfig.group_symmetric_key
-def derive_device_key(device_id, group_symmetric_key):
+def derive_device_key(device_id):
     """
     The unique device ID and the group master key should be encoded into "utf-8"
     After this the encoded group master key must be used to compute an HMAC-SHA256 of the encoded registration ID.
