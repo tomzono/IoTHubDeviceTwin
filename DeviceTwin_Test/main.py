@@ -15,8 +15,6 @@ from azure.iot.device import IoTHubDeviceClient, Message
 import DPS_derive_device_key as devicekey
 import DPS_register_device as registerdevice
 
-import DPSconfig
-group_symmetric_key = DPSconfig.group_symmetric_key
 
 # constant
 VER = 1.2
@@ -29,17 +27,14 @@ VANTIQ_FORWARD_HANDLING_DATA_COUNT = 30
 sensordata = {}
 RECEIVED_MESSAGES = 0
 
-
 #Create_IoTHubConection
 def iothub_client_init():
-    derived_device_key = devicekey.derive_device_key(device_id, group_symmetric_key)
+    derived_device_key = devicekey.derive_device_key(device_id)
     registration_result =registerdevice.register_device(device_id,derived_device_key)
-    print(registration_result)
-    print("The status was :-")
-    print(registration_result.status)
-    print("The etag is :-")
-    print(registration_result.registration_state.etag)
-    print("\n")
+    print("The status was : ", registration_result.status)
+    print("The etag is : ",registration_result.registration_state.etag)
+    print("The assigned IoT_hub : ",registration_result.registration_state.assigned_hub)
+
     if registration_result.status == "assigned":
         print("Will send telemetry from the provisioned device with id {id}".format(id=device_id))
         device_client = IoTHubDeviceClient.create_from_symmetric_key(
@@ -49,7 +44,7 @@ def iothub_client_init():
         )
     return device_client
 
-#Send message to IoTHub
+#Send message to IoTHub　and update DeviceTwin
 def iothub_SendMessage(str):
     result = False
     message = str
@@ -60,10 +55,8 @@ def iothub_SendMessage(str):
     try:
         # get the twin
         twin = client.get_twin()
-        response_interval = twin['desired']['intervaal']
-        print("deviceTwinSettingHANDLING_DATA_COUNT:",response_interval)
         #setting handling_data_count
-        VANTIQ_FORWARD_HANDLING_DATA_COUNT = response_interval
+        VANTIQ_FORWARD_HANDLING_DATA_COUNT = twin['desired']['intervaal']
         print("VANTIQ_FORWARD_HANDLING_DATA_COUNT",VANTIQ_FORWARD_HANDLING_DATA_COUNT)
         #test_send DeviceTwin_reported
         reported_properties = {"temperature": random.randint(320, 800) / 10,"device":device_id}
@@ -323,11 +316,6 @@ if __name__ == "__main__":
 
     except KeyboardInterrupt:
         print ("IoTHubClient stopped")
-    #except Exception as e:
-        #print "Exception: " + str(e)
-        #import traceback
-        #traceback.print_exc()
-        #sys.exit(1)
 
     finally:
         if flag_scanning_started:
