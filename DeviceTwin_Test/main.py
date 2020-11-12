@@ -31,9 +31,9 @@ RECEIVED_MESSAGES = 0
 def iothub_client_init():
     derived_device_key = devicekey.derive_device_key(device_id)
     registration_result = registerdevice.register_device(device_id,derived_device_key)
-    print ("The status was : {}",format(registration_result.status))
-    print ("The etag is : {}",format(registration_result.registration_state.etag))
-    print ("The assigned IoT_hub : {}",format(registration_result.registration_state.assigned_hub))
+    print ("The status was : {}".format(registration_result.status))
+    print ("The etag is : {}".format(registration_result.registration_state.etag))
+    print ("The assigned IoT_hub : {}".format(registration_result.registration_state.assigned_hub))
 
     if registration_result.status == "assigned":
         print ("Will send telemetry from the provisioned device with id {id}".format(id=device_id))
@@ -57,7 +57,7 @@ def iothub_SendMessage(str):
         twin = client.get_twin()
         #setting handling_data_count
         VANTIQ_FORWARD_HANDLING_DATA_COUNT = twin['desired']['intervaal']
-        print ("VANTIQ_FORWARD_HANDLING_DATA_COUNT : {}",format(VANTIQ_FORWARD_HANDLING_DATA_COUNT))
+        print ("VANTIQ_FORWARD_HANDLING_DATA_COUNT : {}".format(VANTIQ_FORWARD_HANDLING_DATA_COUNT))
         #test_send DeviceTwin_reported
         reported_properties = {"temperature": random.randint(320, 800) / 10,"device":device_id}
         print ("Setting reported temperature to {}".format(reported_properties))
