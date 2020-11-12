@@ -51,21 +51,23 @@ def iothub_SendMessage(str):
     dict_message = json.loads(message)
     print (dict_message)
     global VANTIQ_FORWARD_HANDLING_DATA_COUNT
+    ## DEBUG: 
+    # get the twin
+    twin = client.get_twin()
+    #setting handling_data_count
+    VANTIQ_FORWARD_HANDLING_DATA_COUNT = twin['desired']['intervaal']
+    print ("VANTIQ_FORWARD_HANDLING_DATA_COUNT : {}".format(VANTIQ_FORWARD_HANDLING_DATA_COUNT))
+    #test_send DeviceTwin_reported
+    #reported_properties = {"temperature": random.randint(320, 800) / 10,"device":device_id}
+    reported_properties = message
+    client.patch_twin_reported_properties(reported_properties)
+    #send Message to IoTHub
+    client.send_message(message)
+    print ("Send data to IoTHub")
+    result = True
 
     try:
-        # get the twin
-        twin = client.get_twin()
-        #setting handling_data_count
-        VANTIQ_FORWARD_HANDLING_DATA_COUNT = twin['desired']['intervaal']
-        print ("VANTIQ_FORWARD_HANDLING_DATA_COUNT : {}".format(VANTIQ_FORWARD_HANDLING_DATA_COUNT))
-        #test_send DeviceTwin_reported
-        #reported_properties = {"temperature": random.randint(320, 800) / 10,"device":device_id}
-        reported_properties = message
-        client.patch_twin_reported_properties(reported_properties)
-        #send Message to IoTHub
-        client.send_message(message)
-        print ("Send data to IoTHub")
-        result = True
+        print("a")
     except Exception as e:
         print ("Failed to send data to IoTHub")
 
