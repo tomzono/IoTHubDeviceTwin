@@ -70,14 +70,17 @@ def iothub_SendMessage(str):
         client.patch_twin_reported_properties(reported_properties)
     except Exception as e:
         print ("Failed to send DeviceTwin to IoTHub")
+        print("---------------------------------------------------------------------------")
 
     #send Message to IoTHub
     try:
         client.send_message(message)
         print ("Send data to IoTHub")
+        print("---------------------------------------------------------------------------")
         result = True
     except Exception as e:
         print ("Failed to send Message to IoTHub")
+        print("---------------------------------------------------------------------------")
 
     return result
 
@@ -316,6 +319,7 @@ if __name__ == "__main__":
         message_listener_thread = threading.Thread(target=message_listener, args=(client,))
         message_listener_thread.daemon = True
         message_listener_thread.start()
+        print("---------------------------------------------------------------------------")
 
         while True:
             # parse ble event
