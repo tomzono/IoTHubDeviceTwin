@@ -183,14 +183,15 @@ def eval_sensor_state():
 
 
 def print_sensor_state():
-    print ("----------------------------------------------------")
+    print("---------------------------------------------------------------------------")
     print ("sensor status : %s (Intvl. %ssec)" % (datetime.datetime.today(),
            conf.CHECK_SENSOR_STATE_INTERVAL_SECONDS))
+
     for sensor in sensor_list:
         print (" " + sensor.bt_address, ": %s :" % sensor.sensor_type, \
             ("ACTIVE" if sensor.flag_active else "DEAD"), \
             "(%s)" % sensor.tick_last_update)
-    print ("")
+    print("---------------------------------------------------------------------------")
 
 
 #  Utility function ###
