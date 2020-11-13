@@ -318,6 +318,8 @@ if __name__ == "__main__":
         sock.setsockopt(ble.bluez.SOL_HCI, ble.bluez.HCI_FILTER, flt)
 
         client = iothub_client_init()
+        # Set the method request handler on the client
+        client.on_method_request_received = method_request_handler
         print ( "IoT Hub device sending periodic messages, press Ctrl-C to exit" )
         message_listener_thread = threading.Thread(target=message_listener, args=(client,))
         message_listener_thread.daemon = True
