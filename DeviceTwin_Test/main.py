@@ -10,7 +10,7 @@ import ble
 import json
 import random
 import time
-from azure.iot.device import IoTHubDeviceClient, Message
+from azure.iot.device import IoTHubDeviceClient, Message, MethodResponse
 import sensor_beacon as envsensor
 import DPS_derive_device_key as devicekey
 import DPS_register_device as registerdevice
@@ -114,7 +114,9 @@ def method_request_handler(method_request):
         print("executed unknown method: " + method_request.name)
 
     # Send the response
+    print ("check1")
     method_response = MethodResponse.create_from_method_request(method_request, status, payload)
+    print ("check2")
     client.send_method_response(method_response)
 
 
