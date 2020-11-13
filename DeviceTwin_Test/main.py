@@ -114,7 +114,7 @@ def method_request_handler(method_request):
 
     # Send the response
     method_response = MethodResponse.create_from_method_request(method_request, status, payload)
-    device_client.send_method_response(method_response)
+    client.send_method_response(method_response)
 
 
 # Set the method request handler on the client
