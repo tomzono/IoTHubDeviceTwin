@@ -100,7 +100,7 @@ def message_listener(client):
 
 def method_request_handler(method_request):
     # Determine how to respond to the method request based on the method name
-    if method_request.name == "method1":
+    if method_request.name == "get_settings":
         payload = {"result": True, "data": "some data"}  # set response payload
         status = 200  # set return status code
         print("executed method1")
