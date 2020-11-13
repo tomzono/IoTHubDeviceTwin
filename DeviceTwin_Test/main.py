@@ -100,6 +100,7 @@ def message_listener(client):
 
 def method_request_handler(method_request):
     print (method_request)
+    print (json.loads(method_request))
     # Determine how to respond to the method request based on the method name
     if method_request.name == "get_settings":
         payload = {"result": True, "data": "some data"}  # set response payload
