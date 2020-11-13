@@ -97,6 +97,29 @@ def message_listener(client):
         print ( "Total calls received: {}".format(RECEIVED_MESSAGES))
 
 
+def method_request_handler(method_request):
+    # Determine how to respond to the method request based on the method name
+    if method_request.name == "method1":
+        payload = {"result": True, "data": "some data"}  # set response payload
+        status = 200  # set return status code
+        print("executed method1")
+    elif method_request.name == "method2":
+        payload = {"result": True, "data": 1234}  # set response payload
+        status = 200  # set return status code
+        print("executed method2")
+    else:
+        payload = {"result": False, "data": "unknown method"}  # set response payload
+        status = 400  # set return status code
+        print("executed unknown method: " + method_request.name)
+
+    # Send the response
+    method_response = MethodResponse.create_from_method_request(method_request, status, payload)
+    device_client.send_method_response(method_response)
+
+
+# Set the method request handler on the client
+device_client.on_method_request_received = method_request_handler
+
 def parse_events(sock, loop_count=10):
     global sensor_list
     pkt = sock.recv(255)
