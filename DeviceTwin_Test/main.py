@@ -118,7 +118,7 @@ def method_request_handler(method_request):
 
 
 # Set the method request handler on the client
-device_client.on_method_request_received = method_request_handler
+client.on_method_request_received = method_request_handler
 
 def parse_events(sock, loop_count=10):
     global sensor_list
