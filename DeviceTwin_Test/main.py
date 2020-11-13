@@ -345,7 +345,7 @@ if __name__ == "__main__":
 
 
         # Set the method request handler on the client
-        client.on_method_request_received = method_request_handler()
+        client.on_method_request_received = method_request_handler
 
         while True:
             # parse ble event
