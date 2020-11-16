@@ -53,9 +53,7 @@ def iothub_SendMessage(str):
     #Send DeviceTwin to IoTHub
     try:
         # get the twin
-        print ("get_twin1")
         twin = client.get_twin()
-        print ("get_twin2")
         #setting handling_data_count
         VANTIQ_FORWARD_HANDLING_DATA_COUNT = twin['desired']['intervaal']
         print ("VANTIQ_FORWARD_HANDLING_DATA_COUNT : {}".format(VANTIQ_FORWARD_HANDLING_DATA_COUNT))
@@ -104,8 +102,8 @@ def method_request_handler(method_request):
     print (method_request.name)
     print (method_request.payload)
     # Determine how to respond to the method request based on the method name
-    if method_request.name == "get_settings":
-        payload = {"result": True, "data": "some data"}  # set response payload
+    if method_request.name == "system_reboot":
+        payload = {"result": True, "status":"RebootingOS"}  # set response payload
         status = 200  # set return status code
         print ("check1")
         method_response = MethodResponse.create_from_method_request(method_request, status, payload)
@@ -353,16 +351,13 @@ if __name__ == "__main__":
 
         client = iothub_client_init()
         # Set the method request handler on the client
-        print ("method request receive start")
         client.on_method_request_received = method_request_handler
-        time.sleep(5)
         print ( "IoT Hub device sending periodic messages, press Ctrl-C to exit" )
         message_listener_thread = threading.Thread(target=message_listener, args=(client,))
         message_listener_thread.daemon = True
         message_listener_thread.start()
         print("---------------------------------------------------------------------------")
-        print("threadstart:end")
-
+        time.sleep(5)
         while True:
             # parse ble event
             parse_events(sock)
