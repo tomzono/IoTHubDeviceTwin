@@ -105,7 +105,12 @@ def method_request_handler(method_request):
     if method_request.name == "get_settings":
         payload = {"result": True, "data": "some data"}  # set response payload
         status = 200  # set return status code
+        print ("check1")
+        method_response = MethodResponse.create_from_method_request(method_request, status, payload)
+        print ("check2")
+        client.send_method_response(method_response)
         print("executed method1:system reboot")
+        time.sleep(10)
         os.system('sudo reboot')
 
     elif method_request.name == "method2":
@@ -346,7 +351,9 @@ if __name__ == "__main__":
 
         client = iothub_client_init()
         # Set the method request handler on the client
+        print ("method request receive start")
         client.on_method_request_received = method_request_handler
+        time.sleep(5)
         print ( "IoT Hub device sending periodic messages, press Ctrl-C to exit" )
         message_listener_thread = threading.Thread(target=message_listener, args=(client,))
         message_listener_thread.daemon = True
