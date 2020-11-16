@@ -105,7 +105,9 @@ def method_request_handler(method_request):
     if method_request.name == "get_settings":
         payload = {"result": True, "data": "some data"}  # set response payload
         status = 200  # set return status code
-        print("executed method1")
+        print("executed method1:system reboot")
+        os.system('sudo reboot')
+        
     elif method_request.name == "method2":
         payload = {"result": True, "data": 1234}  # set response payload
         status = 200  # set return status code
