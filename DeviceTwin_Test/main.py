@@ -99,8 +99,6 @@ def message_listener(client):
 
 
 def method_request_handler(method_request):
-    print (method_request.name)
-    print (method_request.payload)
     # Determine how to respond to the method request based on the method name
     if method_request.name == "system_reboot":
         payload = {"result": True, "status":"RebootingOS"}  # set response payload
@@ -124,9 +122,7 @@ def method_request_handler(method_request):
         print("executed unknown method: " + method_request.name)
 
     # Send the response
-    print ("check1")
     method_response = MethodResponse.create_from_method_request(method_request, status, payload)
-    print ("check2")
     client.send_method_response(method_response)
 
 
