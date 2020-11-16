@@ -1,10 +1,10 @@
 #!/usr/bin/python
 
 import math
-import conf
+from . import conf as conf
 import datetime
 import str_util
-import ble
+from . import ble as ble
 import requests
 import json
 

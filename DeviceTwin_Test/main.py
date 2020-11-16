@@ -5,15 +5,15 @@ import socket
 import datetime
 import threading
 import struct
-import conf
-import ble
+from . import conf as conf
+from . import ble as ble
 import json
 import random
 import time
 from azure.iot.device import IoTHubDeviceClient, Message, MethodResponse
-import sensor_beacon as envsensor
-import DPS_derive_device_key as devicekey
-import DPS_register_device as registerdevice
+from . import sensor_beacon as envsensor
+from . import DPS_derive_device_key as devicekey
+from .import DPS_register_device as registerdevice
 
 # constant
 VER = 1.2
@@ -107,7 +107,7 @@ def method_request_handler(method_request):
         status = 200  # set return status code
         print("executed method1:system reboot")
         os.system('sudo reboot')
-        
+
     elif method_request.name == "method2":
         payload = {"result": True, "data": 1234}  # set response payload
         status = 200  # set return status code

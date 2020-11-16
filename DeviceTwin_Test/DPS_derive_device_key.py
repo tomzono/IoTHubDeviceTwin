@@ -2,7 +2,7 @@ import os
 import base64
 import hmac
 import hashlib
-import DPSconfig
+from . import DPSconfig as DPSconfig
 group_symmetric_key = DPSconfig.group_symmetric_key
 
 def derive_device_key(device_id):
