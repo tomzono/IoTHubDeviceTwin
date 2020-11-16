@@ -108,8 +108,8 @@ def method_request_handler(method_request):
         print ("executed method1:system reboot")
         #client.disconnect()
         print ("disconectin clients")
-        time.sleep(10)
         print ("system reboot")
+        time.sleep(10)
         os.system('sudo reboot')
 
     elif method_request.name == "method2":
