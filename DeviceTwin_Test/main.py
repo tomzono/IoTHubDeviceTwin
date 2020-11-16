@@ -11,8 +11,8 @@ import random
 import time
 from azure.iot.device import IoTHubDeviceClient, Message, MethodResponse
 sys.path.append('/home/pi/workspace/fukuzono_work/IoTHubDeviceTwin/DeviceTwin_Test')
-import conf
-import ble
+import conf as conf
+import ble as ble
 import sensor_beacon as envsensor
 import DPS_derive_device_key as devicekey
 import DPS_register_device as registerdevice
@@ -55,8 +55,6 @@ def iothub_SendMessage(str):
     #Send DeviceTwin to IoTHub
     try:
         print ("start_Sendmessage")
-        time.sleep(10)
-        print ("a")
         # get the twin
         twin = client.get_twin()
         #setting handling_data_count
