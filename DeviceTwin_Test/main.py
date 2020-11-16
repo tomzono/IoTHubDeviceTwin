@@ -105,12 +105,13 @@ def method_request_handler(method_request):
     if method_request.name == "system_reboot":
         payload = {"result": True, "status":"RebootingOS"}  # set response payload
         status = 200  # set return status code
-        print ("check1")
         method_response = MethodResponse.create_from_method_request(method_request, status, payload)
-        print ("check2")
         client.send_method_response(method_response)
-        print("executed method1:system reboot")
+        print ("executed method1:system reboot")
+        client.disconnect()
+        print ("disconectin clients")
         time.sleep(10)
+        print (system reboot)
         os.system('sudo reboot')
 
     elif method_request.name == "method2":
