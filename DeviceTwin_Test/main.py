@@ -1,4 +1,4 @@
-test "/home/pi/workspace/fukuzono_work/IoTHubDeviceTwin/DeviceTwin_Test/"
+test  = "/home/pi/workspace/fukuzono_work/IoTHubDeviceTwin/DeviceTwin_Test/"
 import sys
 import os
 import argparse
