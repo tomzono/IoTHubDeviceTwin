@@ -106,7 +106,7 @@ def method_request_handler(method_request):
         method_response = MethodResponse.create_from_method_request(method_request, status, payload)
         client.send_method_response(method_response)
         print ("executed method1:system reboot")
-        client.disconnect()
+        #client.disconnect()
         print ("disconectin clients")
         time.sleep(10)
         print ("system reboot")
