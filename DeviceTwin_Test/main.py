@@ -54,6 +54,7 @@ def iothub_SendMessage(str):
 
     #Send DeviceTwin to IoTHub
     try:
+        print ("start_Sendmessage")
         time.sleep(10)
         print ("a")
         # get the twin
@@ -351,14 +352,13 @@ if __name__ == "__main__":
         client = iothub_client_init()
         # Set the method request handler on the client
         client.on_method_request_received = method_request_handler
-        time.sleep(20)
         print("start_request_recive")
         print ( "IoT Hub device sending periodic messages, press Ctrl-C to exit" )
         message_listener_thread = threading.Thread(target=message_listener, args=(client,))
         message_listener_thread.daemon = True
         message_listener_thread.start()
+        time.sleep(20)
         print("---------------------------------------------------------------------------")
-        time.sleep(5)
         while True:
             # parse ble event
             parse_events(sock)
