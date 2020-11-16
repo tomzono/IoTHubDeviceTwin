@@ -1,4 +1,5 @@
 import os
+import sys
 from azure.iot.device import ProvisioningDeviceClient
 from azure.iot.device import IoTHubDeviceClient
 from azure.iot.device import Message
