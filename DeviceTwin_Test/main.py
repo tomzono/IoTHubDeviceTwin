@@ -1,4 +1,3 @@
-test  = "/home/pi/workspace/fukuzono_work/IoTHubDeviceTwin/DeviceTwin_Test/"
 import sys
 import os
 import argparse
@@ -6,7 +5,7 @@ import socket
 import datetime
 import threading
 import struct
-from test import conf
+import .conf
 import ble
 import json
 import random
