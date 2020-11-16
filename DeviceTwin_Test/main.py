@@ -351,6 +351,8 @@ if __name__ == "__main__":
         client = iothub_client_init()
         # Set the method request handler on the client
         client.on_method_request_received = method_request_handler
+        time.sleep(20)
+        print("start_request_recive")
         print ( "IoT Hub device sending periodic messages, press Ctrl-C to exit" )
         message_listener_thread = threading.Thread(target=message_listener, args=(client,))
         message_listener_thread.daemon = True
