@@ -1,3 +1,4 @@
+
 import sys
 import os
 import argparse
@@ -5,12 +6,13 @@ import socket
 import datetime
 import threading
 import struct
-import /workspace/fukuzono_work/IoTHubDeviceTwin/DeviceTwin_Test.conf
-import ble
 import json
 import random
 import time
 from azure.iot.device import IoTHubDeviceClient, Message, MethodResponse
+sys.path.append('/workspace/fukuzono_work/IoTHubDeviceTwin/DeviceTwin_Test')
+import conf
+import ble
 import sensor_beacon as envsensor
 import DPS_derive_device_key as devicekey
 import DPS_register_device as registerdevice
