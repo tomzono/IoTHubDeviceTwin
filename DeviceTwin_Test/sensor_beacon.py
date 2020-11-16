@@ -1,12 +1,13 @@
 #!/usr/bin/python
 
 import math
-import conf as conf
 import datetime
-import str_util
-import ble as ble
 import requests
 import json
+sys.path.append('/home/pi/workspace/fukuzono_work/IoTHubDeviceTwin/DeviceTwin_Test')
+import ble as ble
+import conf as conf
+import str_util as str_util
 
 # EnvSenor(OMRON 2JCIE-BL01 Broadcaster) ####################################
 class SensorBeacon:

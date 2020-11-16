@@ -2,6 +2,7 @@ import os
 import base64
 import hmac
 import hashlib
+sys.path.append('/home/pi/workspace/fukuzono_work/IoTHubDeviceTwin/DeviceTwin_Test')
 import DPSconfig
 group_symmetric_key = DPSconfig.group_symmetric_key
 

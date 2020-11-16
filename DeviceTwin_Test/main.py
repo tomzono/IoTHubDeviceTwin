@@ -10,7 +10,7 @@ import json
 import random
 import time
 from azure.iot.device import IoTHubDeviceClient, Message, MethodResponse
-#sys.path.append('/home/pi/workspace/fukuzono_work/IoTHubDeviceTwin/DeviceTwin_Test')
+sys.path.append('/home/pi/workspace/fukuzono_work/IoTHubDeviceTwin/DeviceTwin_Test')
 import conf
 import ble
 import sensor_beacon as envsensor
