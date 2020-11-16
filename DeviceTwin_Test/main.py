@@ -5,8 +5,8 @@ import socket
 import datetime
 import threading
 import struct
-import conf as conf
-import ble as ble
+import conf
+import ble
 import json
 import random
 import time
