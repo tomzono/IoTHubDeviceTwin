@@ -55,9 +55,9 @@ def iothub_SendMessage(str):
     #Send DeviceTwin to IoTHub
     try:
         # get the twin
-        twin = client.get_twin()
+        #twin = client.get_twin()
         #setting handling_data_count
-        VANTIQ_FORWARD_HANDLING_DATA_COUNT = twin['desired']['intervaal']
+        VANTIQ_FORWARD_HANDLING_DATA_COUNT = 60
         print ("VANTIQ_FORWARD_HANDLING_DATA_COUNT : {}".format(VANTIQ_FORWARD_HANDLING_DATA_COUNT))
         reported_properties = {
             "temperature" : dict_message['temperature'],
