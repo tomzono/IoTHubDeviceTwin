@@ -5,7 +5,7 @@ import socket
 import datetime
 import threading
 import struct
-import . conf
+import /workspace/fukuzono_work/IoTHubDeviceTwin/DeviceTwin_Test.conf
 import ble
 import json
 import random
