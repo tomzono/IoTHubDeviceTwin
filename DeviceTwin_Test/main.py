@@ -359,6 +359,7 @@ if __name__ == "__main__":
         message_listener_thread.daemon = True
         message_listener_thread.start()
         print("---------------------------------------------------------------------------")
+        print("threadstart:end")
 
         while True:
             # parse ble event
