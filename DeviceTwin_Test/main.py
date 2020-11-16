@@ -1,3 +1,4 @@
+test "/home/pi/workspace/fukuzono_work/IoTHubDeviceTwin/DeviceTwin_Test/"
 import sys
 import os
 import argparse
@@ -5,7 +6,7 @@ import socket
 import datetime
 import threading
 import struct
-import conf
+from test import conf
 import ble
 import json
 import random
@@ -101,13 +102,11 @@ def message_listener(client):
 def method_request_handler(method_request):
     # Determine how to respond to the method request based on the method name
     if method_request.name == "system_reboot":
-        payload = {"result": True, "status":"RebootingOS"}  # set response payload
+        payload = {"result": True, "status":"OSreboot"}  # set response payload
         status = 200  # set return status code
         method_response = MethodResponse.create_from_method_request(method_request, status, payload)
         client.send_method_response(method_response)
         print ("executed method1:system reboot")
-        #client.disconnect()
-        print ("disconectin clients")
         print ("system reboot")
         time.sleep(10)
         os.system('sudo reboot')
