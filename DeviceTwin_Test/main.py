@@ -5,15 +5,15 @@ import socket
 import datetime
 import threading
 import struct
-from . import conf as conf
-from . import ble as ble
+import conf as conf
+import ble as ble
 import json
 import random
 import time
 from azure.iot.device import IoTHubDeviceClient, Message, MethodResponse
-from . import sensor_beacon as envsensor
-from . import DPS_derive_device_key as devicekey
-from .import DPS_register_device as registerdevice
+import sensor_beacon as envsensor
+import DPS_derive_device_key as devicekey
+import DPS_register_device as registerdevice
 
 # constant
 VER = 1.2
